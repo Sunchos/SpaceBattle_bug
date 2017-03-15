@@ -1,6 +1,6 @@
 #include "Gui.h"
 
-GUI::GUI() : buttons({}), score(NULL), health(NULL), result(NULL), musicBox(NULL), soundBox(NULL)
+GUI::GUI() : buttons({}), score(NULL), health(NULL), result(NULL), musicBox(NULL), soundBox(NULL), finalScore(NULL)
 {
 }
 
@@ -150,6 +150,12 @@ void GUI::game(IGUIEnvironment *gui, TextureManager *&manager)
 {
 	drop(true, true);
 
+	if (score)
+	{
+		score->remove();
+		score = NULL;
+	}
+
 	score = gui->addStaticText(L"Score   0", { SCORE_POSITION_H, SCORE_POSITION_V, SCORE_POSITION_H + SCORE_HEALTH_WIDTH, SCORE_POSITION_V + SCORE_HEALTH_WIDTH });
 	score->setOverrideColor(WHITE_COLOR);
 	score->enableOverrideColor(true);
@@ -161,7 +167,7 @@ void GUI::game(IGUIEnvironment *gui, TextureManager *&manager)
 
 void GUI::win(IGUIEnvironment *gui, TextureManager *&manager)
 {
-  	drop(true);
+  	drop(true, true);
 
 	result = gui->addStaticText(L"You won!", 
 	{ 
@@ -173,13 +179,26 @@ void GUI::win(IGUIEnvironment *gui, TextureManager *&manager)
 	result->setOverrideColor(WHITE_COLOR);
 	result->enableOverrideColor(true);
 
-	score->setRelativePosition(
-	{ 
-		WINDOW_WIDTH / 2 - SCORE_HEALTH_WIDTH / 2,
-		WINDOW_HEIGHT / 2 - SCORE_HEALTH_HEIGHT / 2,
-		WINDOW_WIDTH / 2 + SCORE_HEALTH_WIDTH / 2,
-		WINDOW_HEIGHT / 2 + SCORE_HEALTH_HEIGHT / 2
-	});
+	if (score)
+	{
+		finalScore = gui->addStaticText(score->getText(),
+		{
+			WINDOW_WIDTH / 2 - SCORE_HEALTH_WIDTH / 2,
+			WINDOW_HEIGHT / 2 - SCORE_HEALTH_HEIGHT / 2,
+			WINDOW_WIDTH / 2 + SCORE_HEALTH_WIDTH / 2,
+			WINDOW_HEIGHT / 2 + SCORE_HEALTH_HEIGHT / 2
+		});
+		finalScore->setOverrideColor(WHITE_COLOR);
+		finalScore->enableOverrideColor(true);
+	}
+
+	//score->setRelativePosition(
+	//{ 
+	//	WINDOW_WIDTH / 2 - SCORE_HEALTH_WIDTH / 2,
+	//	WINDOW_HEIGHT / 2 - SCORE_HEALTH_HEIGHT / 2,
+	//	WINDOW_WIDTH / 2 + SCORE_HEALTH_WIDTH / 2,
+	//	WINDOW_HEIGHT / 2 + SCORE_HEALTH_HEIGHT / 2
+	//});
 
 	addButton(gui, manager->getButtonsTexture()[0], "Start",
 	{ 
@@ -208,7 +227,7 @@ void GUI::win(IGUIEnvironment *gui, TextureManager *&manager)
 
 void GUI::lose(IGUIEnvironment *gui, TextureManager *&manager)
 {
-	drop(true);
+	drop(true, true);
 
 	result = gui->addStaticText(L"You lost!",
 	{
@@ -220,13 +239,26 @@ void GUI::lose(IGUIEnvironment *gui, TextureManager *&manager)
 	result->setOverrideColor(WHITE_COLOR);
 	result->enableOverrideColor(true);
 
-	score->setRelativePosition(
+	if (score)
 	{
-		WINDOW_WIDTH / 2 - SCORE_HEALTH_WIDTH / 2,
-		WINDOW_HEIGHT / 2 - SCORE_HEALTH_HEIGHT / 2,
-		WINDOW_WIDTH / 2 + SCORE_HEALTH_WIDTH / 2,
-		WINDOW_HEIGHT / 2 + SCORE_HEALTH_HEIGHT / 2
-	});
+		finalScore = gui->addStaticText(score->getText(),
+		{
+			WINDOW_WIDTH / 2 - SCORE_HEALTH_WIDTH / 2,
+			WINDOW_HEIGHT / 2 - SCORE_HEALTH_HEIGHT / 2,
+			WINDOW_WIDTH / 2 + SCORE_HEALTH_WIDTH / 2,
+			WINDOW_HEIGHT / 2 + SCORE_HEALTH_HEIGHT / 2
+		});
+		finalScore->setOverrideColor(WHITE_COLOR);
+		finalScore->enableOverrideColor(true);
+	}
+
+	//score->setRelativePosition(
+	//{
+	//	WINDOW_WIDTH / 2 - SCORE_HEALTH_WIDTH / 2,
+	//	WINDOW_HEIGHT / 2 - SCORE_HEALTH_HEIGHT / 2,
+	//	WINDOW_WIDTH / 2 + SCORE_HEALTH_WIDTH / 2,
+	//	WINDOW_HEIGHT / 2 + SCORE_HEALTH_HEIGHT / 2
+	//});
 
 	addButton(gui, manager->getButtonsTexture()[0], "Start",
 	{
@@ -293,5 +325,11 @@ void GUI::drop(bool fScore, bool fHealth)
 	{
 		soundBox->remove();
 		soundBox = NULL;
+	}
+
+	if (finalScore)
+	{
+		finalScore->remove();
+		finalScore = NULL;
 	}
 }

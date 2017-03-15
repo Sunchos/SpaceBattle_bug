@@ -47,6 +47,7 @@ private:
 
 	list<IGUIButton *>	buttons;
 	IGUIStaticText		*score;
+	IGUIStaticText      *finalScore;
 	IGUIStaticText		*health;
 	IGUIStaticText		*result;
 	IGUIComboBox		*musicBox;

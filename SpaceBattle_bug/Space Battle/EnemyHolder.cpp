@@ -82,7 +82,7 @@ bool EnemyHolder::checkNode(ISceneNode *check, ISceneManager *manager, u32 *scor
 		if (check == i.getNode())
 		{
 			i.damage(i.getDamage());
-			(*score) += i.getDamage();
+ 			(*score) += i.getDamage();
 			if (i.isDead())
 			{
 				if (soundPlay)

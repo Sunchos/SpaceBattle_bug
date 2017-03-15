@@ -267,11 +267,13 @@ void Game::menu()
 
 	case OVER:
 		timer.totalTime = engine->getNow();
-		score -= timer.totalTime / 2;
+		// TODO: identify.
+		//score -= timer.totalTime / 2;
 
 		if (gui->isButtonPressed(START_BUTTON))
 		{
 			state = INGAME;
+			drop();
 			toLevel(false);
 		}
 		else if (gui->isButtonPressed(BACK_BUTTON))
@@ -316,6 +318,7 @@ void Game::drop()
 	enemies->drop();
 	rockets->drop();
 	effects->drop();
+	score = 0;
 }
 
 void Game::loop()

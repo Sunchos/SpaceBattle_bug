@@ -1,0 +1,22 @@
+﻿  TextureManager.cpp
+  RocketHolder.cpp
+  Rocket.cpp
+  Gui.cpp
+d:\programming\c++\spacebattle_bug\spacebattle_bug\space battle\gui.cpp(11): warning C4996: 'mbstowcs': This function or variable may be unsafe. Consider using mbstowcs_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdlib.h(920): note: see declaration of 'mbstowcs'
+  main.cpp
+  Irrlicht.cpp
+  GameObject.cpp
+  GameEvents.cpp
+d:\programming\c++\spacebattle_bug\spacebattle_bug\space battle\gameevents.cpp(56): warning C4244: '=': conversion from 'const irr::f32' to 'irr::s32', possible loss of data
+d:\programming\c++\spacebattle_bug\spacebattle_bug\space battle\gameevents.cpp(57): warning C4244: '=': conversion from 'const irr::f32' to 'irr::s32', possible loss of data
+  Game.cpp
+d:\programming\c++\spacebattle_bug\spacebattle_bug\space battle\game.cpp(18): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Fighter.cpp
+  EnemyHolder.cpp
+d:\programming\c++\spacebattle_bug\spacebattle_bug\space battle\enemyholder.cpp(44): warning C4244: 'initializing': conversion from 'irr::u32' to 'irr::f32', possible loss of data
+  Enemy.cpp
+  Effect.cpp
+  Generating Code...
+  Space Battle.vcxproj -> D:\programming\C++\SpaceBattle_bug\SpaceBattle_bug\Debug\Space Battle.exe
+  Space Battle.vcxproj -> D:\programming\C++\SpaceBattle_bug\SpaceBattle_bug\Debug\Space Battle.pdb (Full PDB)
